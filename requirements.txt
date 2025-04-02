@@ -1,0 +1,14 @@
+tensorflow
+keras
+pandas
+tqdm
+numpy
+librosa
+scikit-learn
+psutil
+scipy
+soundfile
+openpyxl
+sounddevice
+kivy
+kivymd==0.104.1
