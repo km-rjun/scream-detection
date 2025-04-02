@@ -1,0 +1,525 @@
+<MainWindow>:
+
+    BoxLayout:
+        Screen:
+
+            NavigationLayout:
+
+                ScreenManager:
+
+                    Screen:                 ###### main screen on this window
+
+                        BoxLayout:
+                            orientation: 'vertical'
+
+                            MDToolbar:
+                                title: "Scream Detection"
+                                elevation: 10
+                                right_action_items: [["alert-decagram", lambda x: app.show_alert_dialog()]]
+                            BoxLayout:
+                                size_hint:(1,0.3)
+                            BoxLayout:
+                                BoxLayout:
+                                BoxLayout:
+                                    MDCard:
+                                        orientation: "vertical"
+                                        focus_behavior: True
+
+                                        BoxLayout:
+                                            spacing:-150
+                                            orientation:"vertical"
+                                            BoxLayout:
+                                                padding:90
+                                                ImageButton:
+                                                    source:"resources/icons/microphone.png"
+                                                    on_release:app.mainscreen_to_recscreen()
+                                            BoxLayout:
+                                                size_hint:(1,0.4)
+                                                MDLabel:
+                                                    text_size: self.size
+                                                    halign: 'center'
+                                                    valign:'top'
+
+
+
+                                                    text:"Record Audio"
+
+                                BoxLayout:
+                                BoxLayout:
+
+                                    MDCard:
+                                        orientation: "vertical"
+                                        focus_behavior: True
+
+                                        BoxLayout:
+                                            spacing:-150
+                                            orientation:"vertical"
+                                            BoxLayout:
+                                                padding:90
+                                                ImageButton:
+                                                    source:"resources/icons/database.png"
+                                                    on_release:app.mainscreen_to_internalstoragescreen()
+                                            BoxLayout:
+                                                size_hint:(1,0.4)
+                                                MDLabel:
+                                                    text_size: self.size
+                                                    halign: 'center'
+                                                    valign:'top'
+
+
+
+                                                    text:"Add From Storage"
+
+
+
+
+                                BoxLayout:
+                            BoxLayout:
+                                size_hint:(1,0.3)
+
+
+                MDNavigationDrawer:
+
+                    id: nav_drawer
+                    type: "standard"
+                    ContentNavigationDrawer:
+                        BoxLayout:
+                            orientation:"vertical"
+                            BoxLayout:
+                                orientation:"vertical"
+                                MDToolbar:
+                                    title: "                    Options"
+
+                                    elevation: 10
+                                Widget:
+                            BoxLayout:
+                                orientation:"vertical"
+                                MDCard:
+                                    elevation:0
+                                    focus_behavior: True
+                                    MDFlatButton:
+                                        size_hint:(1,1)
+                                        text: "[color=#3d73fa]help[/color]"
+                                        markup:True
+                                        on_release:app.mainscreen_to_helpscreen()
+                                        pos_hint: {"center_x": .5, "center_y": .5}
+
+
+
+                                MDCard:
+                                    elevation:0
+                                    focus_behavior: True
+                                    MDFlatButton:
+                                        size_hint:(1,1)
+                                        text: "[color=#fa5b3d]team[/color]"
+                                        markup:True
+                                        on_release:app.mainscreen_to_teamscreen()
+                                        pos_hint: {"center_x": .5, "center_y": .5}
+
+
+
+
+                            BoxLayout:
+                                BoxLayout:
+                                BoxLayout:
+                                    MDChip:
+                                        label: 'v1.0'
+                                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                                        icon:"sticker-check"
+                                BoxLayout:
+<PopupWarning>:
+    label_of_emergency: label_of_emergency
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            id: label_of_emergency
+            text: ""
+            markup: True
+            size_hint: 0.6, 0.2
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+        Button:
+            text: "cancel"
+            size_hint: 0.3, 0.04
+            on_press:app.close_popup()
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+        Button:
+            text:"ok"
+            size_hint: 0.3, 0.04
+            on_press:app.close_popup()
+            pos_hint: {"center_x": .5, "center_y": .5}
+<AudioRecWindow>:
+    micbutton:micbutton
+    BoxLayout:
+        Screen:
+
+            NavigationLayout:
+
+                ScreenManager:
+
+                    Screen:                 ###### main screen on this window
+
+                        BoxLayout:
+                            orientation: 'vertical'
+
+                            MDToolbar:
+                                title: "Scream Detection"
+                                elevation: 10
+
+                                right_action_items: [["alert-decagram", lambda x: app.show_alert_dialog()],["keyboard-backspace", lambda x: app.recscreen_to_mainscreen()]]
+                            BoxLayout:
+                                size_hint:(1,0.3)
+                            BoxLayout:
+                                BoxLayout:
+                                BoxLayout:
+                                    MDCard:
+                                        orientation: "vertical"
+                                        focus_behavior: True
+
+                                        BoxLayout:
+                                            spacing:-50
+                                            orientation:"vertical"
+                                            BoxLayout:
+
+                                                ImageButton:
+                                                    id:micbutton
+                                                    source:"resources/icons/micoff.png"
+                                                    on_release:app.mic_clicked()
+                                            BoxLayout:
+
+                                                spacing:-70
+                                                size_hint:(1,0.4)
+                                                orientation:"vertical"
+                                                MDLabel:
+                                                    text_size: self.size
+                                                    halign: 'center'
+                                                    valign:'top'
+                                                MDRectangleFlatButton:
+
+                                                    text:"process"
+                                                    size_hint: None, None
+                                                    on_release:app.process_the_sound()
+                                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                                Label:
+
+
+                                BoxLayout:
+
+                            BoxLayout:
+                                size_hint:(1,0.3)
+
+
+
+
+
+
+
+<InternalStorageWindow>:
+    BoxLayout:
+        Screen:
+
+            NavigationLayout:
+
+                ScreenManager:
+
+                    Screen:                 ###### main screen on this window
+
+                        BoxLayout:
+                            orientation: 'vertical'
+
+                            MDToolbar:
+                                title: "Scream Detection"
+                                elevation: 10
+
+                                right_action_items: [["alert-decagram", lambda x: app.show_alert_dialog()],["keyboard-backspace", lambda x: app.internalstoragescreen_to_mainscreen()]]
+                            BoxLayout:
+                                size_hint:(1,0.3)
+                            BoxLayout:
+                                BoxLayout:
+                                BoxLayout:
+                                    MDCard:
+                                        orientation: "vertical"
+                                        focus_behavior: True
+
+                                        BoxLayout:
+                                            spacing:-50
+                                            orientation:"vertical"
+                                            BoxLayout:
+                                                padding:90
+                                                ImageButton:
+                                                    id:micbutton
+                                                    source:"resources/icons/plus.png"
+                                                    on_release:app.internalstoragescreen_to_fileloader()
+                                            BoxLayout:
+
+                                                spacing:-70
+                                                size_hint:(1,0.4)
+                                                orientation:"vertical"
+                                                MDLabel:
+                                                    text_size: self.size
+                                                    halign: 'center'
+                                                    valign:'top'
+
+
+
+                                                    text:"Select File"
+                                                MDRectangleFlatButton:
+
+                                                    text:"process"
+                                                    on_release:app.process_the_sound()
+                                                    size_hint: None, None
+                                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                                Label:
+
+
+                                BoxLayout:
+
+                            BoxLayout:
+                                size_hint:(1,0.3)
+
+
+
+
+
+
+
+
+<FileLoader>:
+    filechooser: filechooser
+
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba : 0,0,0,0
+            Rectangle:
+                pos: self.pos
+                size:self.size
+        FileChooserListView:
+
+            id: filechooser
+            path : '/'
+            multiselect: False
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release:app.fileloaderscreen_to_internalstoragescreen()
+
+            Button:
+                text: "Load"
+                on_release: app.loadfile(filechooser.path, filechooser.selection)
+<HelpWindow>:
+    BoxLayout:
+        Screen:
+
+            NavigationLayout:
+
+                ScreenManager:
+
+                    Screen:                 ###### main screen on this window
+
+                        BoxLayout:
+                            orientation: 'vertical'
+
+                            MDToolbar:
+                                title: "Help"
+
+                                elevation: 10
+
+                                right_action_items: [["keyboard-backspace", lambda x: app.backforcommonscreens()]]
+                            BoxLayout:
+                                size_hint:(1,0.3)
+                            BoxLayout:
+                                BoxLayout:
+                                    size_hint:(0.2,1)
+                                BoxLayout:
+                                    BoxLayout:
+
+                                        radius:[50]
+                                        orientation: "vertical"
+                                        padding:20
+                                        canvas.before:
+                                            Color:
+
+                                                rgba :  rgba("#008080")
+                                            RoundedRectangle:
+
+                                                pos: self.pos
+                                                size:self.size
+                                        MDLabel:
+                                            text_size: self.size
+                                            halign: 'justify'
+                                            valign:'top'
+                                            markup: True
+                                            text:"[font=first][size=30][color=#6EC6BA]* This application is for detecting human cry and scream in audio files.[/font][/size][/color]"
+                                        MDLabel:
+                                            text_size: self.size
+                                            halign: 'justify'
+                                            valign:'top'
+                                            markup: True
+                                            text:"[font=first][size=30][color=#6EC6BA]* You can only process .wav files using this application[/font][/size][/color]"
+                                        MDLabel:
+                                            text_size: self.size
+                                            halign: 'justify'
+                                            valign:'top'
+                                            markup: True
+                                            text:"[font=first][size=30][color=#6EC6BA]* After clicking on process button please wait for sometime because in that time interval wave file will be being processed![/font][/size][/color]"
+                                        MDLabel:
+                                            text_size: self.size
+                                            halign: 'justify'
+                                            valign:'top'
+                                            markup: True
+                                            text:"[font=first][size=30][color=#6EC6BA]* You can pass recorded sound or you can record a 10 second sound through this app.[/font][/size][/color]"
+
+
+
+
+                                BoxLayout:
+                                    size_hint:(0.2,1)
+                            BoxLayout:
+                                size_hint:(1,0.3)
+
+
+<TeamWindow>:
+    BoxLayout:
+        Screen:
+
+            NavigationLayout:
+
+                ScreenManager:
+
+                    Screen:                 ###### main screen on this window
+
+                        BoxLayout:
+                            orientation: 'vertical'
+
+                            MDToolbar:
+                                title: "Team"
+
+                                elevation: 10
+
+                                right_action_items: [["keyboard-backspace", lambda x: app.backforcommonscreens()]]
+                            BoxLayout:
+                                size_hint:(1,0.3)
+                            BoxLayout:
+                                BoxLayout:
+                                    size_hint:(0.2,1)
+                                BoxLayout:                  # boy
+
+
+                                    radius:[50]
+                                    orientation: "vertical"
+                                    padding:20
+                                    canvas.before:
+                                        Color:
+
+                                            rgba :  rgba("#008080")
+                                        RoundedRectangle:
+
+                                            pos: self.pos
+                                            size:self.size
+                                    BoxLayout:
+                                        orientation:"vertical"
+                                        BoxLayout:
+                                            size_hint:(1,0.5)
+                                            ImageButton:
+                                                source:"resources/icons/boy.png"
+
+                                        BoxLayout:
+                                            orientation:"vertical"
+                                            size_hint:(1,0.3)
+                                            Label:
+                                                markup:True
+                                                text:"[color=#6EC6BA]Name: [/color][color=#00308F]Rachit[/color]"
+                                            Label:
+                                                markup:True
+                                                text:"[color=#6EC6BA]UNIVERSITY ROLL NUM:[/color] [color=#00308F]181500523[/color]"
+                                            Label:
+                                                markup:True
+                                                text:"[color=#6EC6BA]ROLE:[/color] [color=#00308F]front end part, ui, coding part[/color]"
+                                BoxLayout:
+                                    size_hint:(0.2,1)
+                                BoxLayout:                  # boy
+
+
+                                    radius:[50]
+                                    orientation: "vertical"
+                                    padding:20
+                                    canvas.before:
+                                        Color:
+
+                                            rgba :  rgba("#008080")
+                                        RoundedRectangle:
+
+                                            pos: self.pos
+                                            size:self.size
+                                    BoxLayout:
+                                        orientation:"vertical"
+                                        BoxLayout:
+                                            size_hint:(1,0.5)
+                                            ImageButton:
+                                                source:"resources/icons/boy.png"
+
+                                        BoxLayout:
+                                            orientation:"vertical"
+                                            size_hint:(1,0.3)
+                                            Label:
+                                                markup:True
+                                                text:"[color=#6EC6BA]Name: [/color][color=#00308F]Vinay Sharma[/color]"
+                                            Label:
+                                                markup:True
+                                                text:"[color=#6EC6BA]UNIVERSITY ROLL NUM:[/color] [color=#00308F]181500793[/color]"
+                                            Label:
+                                                markup:True
+                                                text:"[color=#6EC6BA]ROLE:[/color] [color=#00308F]front end part, ui, coding part[/color]"
+
+                                BoxLayout:
+                                    size_hint:(0.2,1)
+                                BoxLayout:                  # boy1
+
+
+                                    radius:[50]
+                                    orientation: "vertical"
+                                    padding:20
+                                    canvas.before:
+                                        Color:
+
+                                            rgba :  rgba("#008080")
+                                        RoundedRectangle:
+
+                                            pos: self.pos
+                                            size:self.size
+                                    BoxLayout:
+                                        orientation:"vertical"
+                                        BoxLayout:
+                                            size_hint:(1,0.5)
+                                            ImageButton:
+                                                source:"resources/icons/boy.png"
+
+                                        BoxLayout:
+                                            orientation:"vertical"
+                                            size_hint:(1,0.3)
+                                            Label:
+                                                markup:True
+                                                text:"[color=#6EC6BA]Name: [/color][color=#00308F]Yash Mathur[/color]"
+                                            Label:
+                                                markup:True
+                                                text:"[color=#6EC6BA]UNIVERSITY ROLL NUM:[/color] [color=#00308F]181500825[/color]"
+                                            Label:
+                                                markup:True
+                                                text:"[color=#6EC6BA]ROLE:[/color] [color=#00308F]front end part, ui, coding part[/color]"
+                                BoxLayout:
+                                    size_hint:(0.2,1)
+                            BoxLayout:
+                                size_hint:(1,0.3)
+
+
+
+
